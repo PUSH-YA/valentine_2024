@@ -1,8 +1,10 @@
 import menu
-import aslText
+import compviz
+import easter_egg
+
 
 def main():
-    aslText.App()
+    compviz.App([])
 
 if __name__ == "__main__":
     main()
