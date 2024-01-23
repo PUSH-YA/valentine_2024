@@ -1,7 +1,8 @@
 import menu
+import aslText
 
 def main():
-    menu.main()
+    aslText.App()
 
 if __name__ == "__main__":
     main()
