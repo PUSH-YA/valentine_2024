@@ -11,7 +11,7 @@ class App:
         # initialise sound
         mixer.init()
         mixer.music.load("sounds/easter_egg.wav")
-        self.playing = 10
+        self.playing = 10 
 
 
         # initialise camera
@@ -49,11 +49,11 @@ class App:
     def init_gui(self):
         master = self.window
 
-        l0 = Label(master, text = "Please open your palm for the easter egg")
-        l0.grid(row = 0, column = 0, columnspan= 3)
+        l0 = Label(master, text = "Please open your palm for the easter egg", font=("Arial, 20"))
+        l0.grid(row = 0, column = 0, columnspan= 3, sticky = "w")
 
         self.l1 = Label(master, text = self.alph_text[self.open], font=("Arial, 20"))
-        self.l1.pack(side="bottom", anchor="center")
+        self.l1.grid(row = 2, column = 1)
 
         self.canvas = Canvas(master, width = self.width, height = self.height)
         self.canvas.grid(row = 1, column = 0, columnspan=4, pady = 5)

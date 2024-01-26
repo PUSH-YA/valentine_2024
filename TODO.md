@@ -1,6 +1,8 @@
+- [ ] fix the quitting bug in compviz and the text at bottom on how to quit
 - [ ] change the easter egg sound
 - [ ] add the menu page
 - [ ] create the game loop with enemies
 - [ ] create the enemies entity and use that to take the list of enemies in compviz
 - [ ] override cross buttons
 - [ ] text at the bottom of compviz, how to quit the app
+- [ ] add the the machine learning training model file too (without the data)

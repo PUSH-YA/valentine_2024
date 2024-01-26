@@ -25,6 +25,10 @@ class App():
         word_list = ["frustration", "school", "adult duties", "depression", "self doubt", "hatred", "finding job"]
         score = 0
 
+        # QUIT MESSAGE
+        quit_msg = "press esc to quit"
+
+
         GOAL = 28 # 28 months since we started dating
         word = random.choice(word_list)
         while True:
@@ -75,7 +79,7 @@ class App():
                 img,
                 (red_square_pos[0], red_square_pos[1]),
                 (red_square_pos[0] + red_square_len, red_square_pos[1] + 50),
-                (0, 0, 255),
+                (100,2,200),
                 cv2.FILLED,
             )
 
@@ -105,6 +109,9 @@ class App():
 
             cv2.putText(img, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_PLAIN, 2, (160,32,240), 2)
 
+            # QUIT MESSAGE
+            cv2.rectangle(img,(width//2-len(quit_msg)*10-20, height-40), (width//2+len(quit_msg)*10, height),(144,2,106),cv2.FILLED)
+            cv2.putText(img, quit_msg, (width//2-len(quit_msg)*10, height-10), cv2.FONT_HERSHEY_PLAIN, 2, (227,158,152), 2)
 
             cv2.imshow("Image", img)
 

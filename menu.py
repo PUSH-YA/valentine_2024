@@ -1,6 +1,8 @@
 import pygame as pg
 import random
 from sys import exit
+import compviz
+import easter_egg
 
 class App():
     #init & global var
