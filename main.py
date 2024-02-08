@@ -25,4 +25,4 @@ if __name__ == "__main__":
     os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
     WIDTH = 1200
     HEIGHT = 720
-    open_hunt(WIDTH, HEIGHT, word_list)
+    open_compviz(WIDTH, HEIGHT, word_list)

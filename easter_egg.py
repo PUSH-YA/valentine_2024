@@ -11,7 +11,7 @@ class App:
     def __init__(self, width, height, word_list):
         # initialise sound
         mixer.init()
-        mixer.music.load("sounds/easter_egg.wav")
+        mixer.music.load("sounds/try.mp3")
         self.playing = 10 
 
 

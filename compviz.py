@@ -3,7 +3,7 @@ import mediapipe as mp
 import time
 import random
 import menu
-from sys import exit
+import pygame as pg
 
 class App():
 
@@ -33,7 +33,7 @@ class App():
 
         GOAL = 28 # 28 months since we started dating
         word = random.choice(word_list)
-        while True:
+        while not self.exit:
             success, img = cap.read()
             img = cv2.flip(img, 1) # laterally invert it
             imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -85,7 +85,6 @@ class App():
                 cv2.FILLED,
             )
 
-
             cv2.putText(
                 img,
                 score_txt,
@@ -117,8 +116,15 @@ class App():
 
             cv2.imshow("Image", img)
 
+
             key = cv2.waitKey(1) & 0xFF
             if key == 27:  # 27 corresponds to the 'ESC' key
-                break
-        menu.App(width_menu, height_menu, list)
+                cv2.destroyAllWindows()
+                menu.App(width_menu, height_menu, list)
+                self.exit = True
+        
+            
+    
+        
+        
         
