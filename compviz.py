@@ -3,10 +3,12 @@ import mediapipe as mp
 import time
 import random
 import menu
+from sys import exit
 
 class App():
 
-    def __init__(self, list):
+    def __init__(self, width_menu, height_menu, list):
+        self.exit = False
         cap = cv2.VideoCapture(0)
         width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -22,7 +24,7 @@ class App():
         pTime = 0
         cTime = 0
 
-        word_list = ["frustration", "school", "adult duties", "depression", "self doubt", "hatred", "finding job"]
+        word_list = list
         score = 0
 
         # QUIT MESSAGE
@@ -118,5 +120,5 @@ class App():
             key = cv2.waitKey(1) & 0xFF
             if key == 27:  # 27 corresponds to the 'ESC' key
                 break
-        menu.App()
-
+        menu.App(width_menu, height_menu, list)
+        

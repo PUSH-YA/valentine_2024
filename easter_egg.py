@@ -5,9 +5,10 @@ import cv2
 import numpy as np
 import joblib
 from pygame import mixer
+import menu
 
 class App:
-    def __init__(self):
+    def __init__(self, width, height, word_list):
         # initialise sound
         mixer.init()
         mixer.music.load("sounds/easter_egg.wav")
@@ -22,6 +23,10 @@ class App:
         # init main window
         self.window = Tk()
         self.window.title("Easter egg")
+        self.window.protocol("WM_DELETE_WINDOW", self.on_close)
+        self.width_menu = width
+        self.height_menu = height
+        self.word_list = word_list
 
         # init image recognition window
         self.open = ""
@@ -30,7 +35,6 @@ class App:
         # init overlay
         self.overlay = cv2.imread('sprites\\heart.png')
         self.overlay = cv2.resize(self.overlay, (int(self.width), int(self.height)))
-        speaker_img = PhotoImage(file="sprites\\speaker.png")
         
         #init button
         self.open = 0
@@ -59,7 +63,10 @@ class App:
         self.canvas.grid(row = 1, column = 0, columnspan=4, pady = 5)
 
         
-
+    def on_close(self):
+        self.window.destroy()  # Destroy the window
+        mixer.music.stop()  # Stop the music
+        menu.App(self.width_menu, self.height_menu, self.word_list)  # Open the menu
 
     
     def update(self):
