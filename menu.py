@@ -11,27 +11,49 @@ TEXT_HOVER = (38,38,187)
 NO_HOVER_COL = (255,255,255)
 TEXT_NO_HOVER = (0,0,0)
 
+FRAME_LENGTH = 24
 
 class App():
     def __init__(self,width, height, word_list):
         self.width = width
         self.height = height
         self.buttons = None
+        self.bcg_frame = 0
+        self.exit = False
 
         #init & global var
         pg.init()
         pg.mixer.init()
+        pg.font.init()
         pg.mouse.set_visible(False)
         canvas = pg.display.set_mode((self.width, self.height))
         pg.display.set_caption("HAPPY VALENTINE 2024")
-        self.exit = False
         hover = [False, False, False]
+
+        # font
+        font_path = "fonts/pixel.ttf"
+        self.font = pg.font.Font(font_path, 36)
 
         # add buttons
         self.place_buttons()
+
+        # sound
+        self.game_sound = pg.mixer.Sound("sounds/loop.mp3")
+        self.shoot_sound = pg.mixer.Sound("sounds/shoot.wav")
+        self.game_sound.set_volume(0.1)
+        self.game_sound.play(-1)
         
         while not self.exit:
-            canvas.fill((0,0,0))
+            
+            # reduce overhead by NOT calling a function for each frame
+            if self.bcg_frame < 10:
+                frame = "0" + str(self.bcg_frame)
+            else:
+                frame = str(self.bcg_frame)
+            img = pg.image.load("sprites/bcg/f"+ frame + ".png")
+            canvas.fill((0, 0, 0))
+            canvas.blit(img, (0, 0))
+            self.bcg_frame = (self.bcg_frame + 1)%FRAME_LENGTH
 
             for event in pg.event.get():
                 if event.type == pg.QUIT:
@@ -39,7 +61,8 @@ class App():
                 if event.type == pg.MOUSEMOTION:
                     pos = pg.mouse.get_pos()
                     hover = self.check_button(pos)
-                if event.type == pg.MOUSEBUTTONUP:
+                if event.type == pg.MOUSEBUTTONDOWN:
+                    self.shoot_sound.play()
                     pos = pg.mouse.get_pos()
                     clicked = self.check_button(pos)
                     self.button_actions(clicked, word_list)
@@ -84,25 +107,23 @@ class App():
                 button.fill(HOVER_COL)
                 colour = HOVER_COL
                 # Add titles for each button
-                font = pg.font.Font(None, 30)
                 if i == 0:
-                    text = font.render("Start!", True, TEXT_HOVER)
+                    text = self.font.render("Start!", True, TEXT_HOVER)
                 elif i == 1:
-                    text = font.render("VR minigame", True, TEXT_HOVER)
+                    text = self.font.render("VR minigame", True, TEXT_HOVER)
                 elif i == 2:
-                    text = font.render("Easter egg", True, TEXT_HOVER)
+                    text = self.font.render("Easter egg", True, TEXT_HOVER)
                 
             else:
                 button.fill(NO_HOVER_COL)
                 colour = NO_HOVER_COL
                 # Add titles for each button
-                font = pg.font.Font(None, 30)
                 if i == 0:
-                    text = font.render("Start!", True, TEXT_NO_HOVER)
+                    text = self.font.render("Start!", True, TEXT_NO_HOVER)
                 elif i == 1:
-                    text = font.render("VR minigame", True, TEXT_NO_HOVER)
+                    text = self.font.render("VR minigame", True, TEXT_NO_HOVER)
                 elif i == 2:
-                    text = font.render("Easter egg", True, TEXT_NO_HOVER)    
+                    text = self.font.render("Easter egg", True, TEXT_NO_HOVER)    
             # button bcg
             canvas.blit(button, self.buttons_rect[i].topleft) 
             # button txt
@@ -119,7 +140,6 @@ class App():
         if action is not None:
             pg.quit()
             if action == 0:
-                print("start game!")
                 main.open_hunt(self.width, self.height, word_list)
             if action == 1:
                 main.open_compviz(self.width, self.height, word_list)
