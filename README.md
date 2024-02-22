@@ -1,4 +1,4 @@
-<center><img src="./images/Screenshot_1.png" alt="drawing" width="500"/></center>
+<p align = "center"><img src="./images/Screenshot_1.png" alt="drawing" width="500"/></p>
 
 # Inspiration: 
 This project serves as a gift to someone VERY CLOSE AND SPECIAL to me <3. and references a lot of inside jokes. It also serves as a challenge to combine all my data science and game development / software development skills to make a reliable and meaningful project.
@@ -11,11 +11,11 @@ The main game loop consists of a simple duck-hunt like shooting mechanics with r
   
 The animations and sprites (quite basic) for this were created by hand using animating on 5th principle. It also required working with different sound effects at once and created a custom in-game cursor for shooting.
 
-<center><img src="./images/Screenshot_1.png" alt="drawing" width="500"/></center>
+<p align = "center"><img src="./images/Screenshot_1.png" alt="drawing" width="500"/></p>
 
 ## AR game
 mediapipe library was used to track the keypoints on the hand and then render the marking points as well the connecting line to show the hand skeleton on the video feed. These points were then used to check object collision with in built enemies so, you can HIT and DESTROY such enemies.
-<center><img src="./images/Screenshot_3.png" alt="drawing" width="500"/></center>
+<p align = "center"><img src="./images/Screenshot_3.png" alt="drawing" width="500"/></p>
 
 - face has been blurred for obvious reasons.
 
@@ -24,7 +24,7 @@ This required using a pre-trained model from another one of my project:  [ASL tr
 
 It used the old model from the previous project that was retrained and optimised on various hand images (including open and closed palms). Due to the limited time and computationality, the hyperparameters were optimised using manual search on validation set (inferring on how to optimise it further).
 
-<center><img src="./images/Screenshot_4.png" alt="drawing" width="500"/></center>
+<p align = "center"><img src="./images/Screenshot_4.png" alt="drawing" width="500"/></p>
 
 - face has been blurred for obvious reasons.
 
