@@ -31,4 +31,4 @@ if __name__ == "__main__":
     word_list = ["frustration", "school", "adult duties", "depression", "self doubt", "hatred", "finding job"]
     WIDTH = 1200
     HEIGHT = 720
-    # open_menu(WIDTH, HEIGHT, word_list)
+    open_menu(WIDTH, HEIGHT, word_list)
